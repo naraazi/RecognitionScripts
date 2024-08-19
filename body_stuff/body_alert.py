@@ -7,7 +7,7 @@ mp_holistic = mp.solutions.holistic
 pose_landmark_drawing_spec = mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=4)
 pose_connection_drawing_spec = mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0)  # -- you can change the cam here
 
 with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
     while cap.isOpened():
@@ -20,12 +20,12 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-        if results.pose_landmarks:
+        if results.pose_landmarks:  # noqa
             mp_drawing.draw_landmarks(
-                image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS,
+                image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS,  # noqa
                 pose_landmark_drawing_spec, pose_connection_drawing_spec)
 
-            landmarks = results.pose_landmarks.landmark
+            landmarks = results.pose_landmarks.landmark  # noqa
             hip_left = landmarks[mp_holistic.PoseLandmark.LEFT_HIP.value]
             hip_right = landmarks[mp_holistic.PoseLandmark.RIGHT_HIP.value]
 
@@ -34,9 +34,10 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
             image_width = image.shape[1]
 
             if center_x > 0.5:
-                cv2.putText(image, "Alerta", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+                # -- you can translate the text right here:
+                cv2.putText(image, "Alert", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
 
-        cv2.imshow('Retorno', image)
+        cv2.imshow('Window', image)
 
         k = cv2.waitKey(1)
         if k == ord("k"):
