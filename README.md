@@ -5,6 +5,7 @@ Esse conjunto de scripts compõe um exemplo de uso dos sistema de detecção cor
 * Python 3.x
 * Mediapipe
 * OpenCV
+* Pyserial (opcional, procure a seção "Deteção de Corpo com Arduino")
 
 Você pode instalar as dependências necessárias com:
 ```bash
@@ -50,5 +51,23 @@ python nome_do_arquivo.py
 
 4. **Finalizar:** Para parar a execução do script, pressione a tecla 'k'.
 
-## Licença
+# Deteção de Corpo com Arduino
+No projeto, há um diretório chamado "mediapipe_arduino"
+
+Nele, há o script _body_alert.py_ alterado para mandar caracteres em serial para um Arduino. O objetivo é fazer um buzzer tocar quando um corpo for identificado na zona de alerta.
+
+## Como usar
+O buzzer possui dois terminais, o menor vai no GND e o maior vai para um dos terminais digitais do Arduino (o código já está configurado para o porta '8', mas isso pode ser alterado)
+
+Após acomodar o componente, copie o código presente em _main.ino_ e compile no Arduino via Arduino IDE.
+
+Agora, com o script _body_alert_serial.py_, altere a porta serial de acordo com a exibida no Arduino IDE aqui:
+```python
+ser = serial.Serial('<sua_porta>', 9600)
+```
+E, caso necessário, altere o endereçamento da câmera (mostrado em instruções acima).
+
+Todas as indicações usadas para outro scripts mostrados acima servem para este.
+
+# Licença
 Este projeto é distribuído sob a [Licença MIT](LICENSE).
