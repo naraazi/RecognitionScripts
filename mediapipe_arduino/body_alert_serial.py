@@ -38,7 +38,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
             center_x = (hip_left.x + hip_right.x) / 2
 
             if center_x > 0.5:
-                cv2.putText(image, "Alert",
+                cv2.putText(image, "ALERTA",
                             (10, 50),
                             cv2.FONT_HERSHEY_SIMPLEX,
                             1,

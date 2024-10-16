@@ -1,5 +1,5 @@
 // -- pino digital do buzzer
-int buzzerPin = 9;
+int buzzerPin = 12;
 
 void setup() {
   pinMode(buzzerPin, OUTPUT);
